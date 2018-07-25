@@ -13,37 +13,37 @@ pipeline {
 
 	stages {
 
-		stage("Check Re file") {
-			steps {
-				sh "docker ps -a"
-				sh "python --version"
-				sh "test -e /usr/src/app/requirements.txt && echo file exists || echo file not found"
-			}
+		// stage("Check Re file") {
+		// 	steps {
+		// 		sh "docker ps -a"
+		// 		sh "python --version"
+		// 		sh "test -e /usr/src/app/requirements.txt && echo file exists || echo file not found"
+		// 	}
+		// }
+
+		stage("Test - Unit tests") {
+			steps { runUnittests() }
 		}
 
-		// stage("Test - Unit tests") {
-		// 	steps { runUnittests() }
-		// }
+		stage("Build") {
+			steps { buildApp() }
+		}
 
-		// stage("Build") {
-		// 	steps { buildApp() }
-		// }
+		stage("Deploy - Dev") {
+			steps { deploy('dev') }
+		}
 
-		// stage("Deploy - Dev") {
-		// 	steps { deploy('dev') }
-		// }
+		stage("Test - UAT Dev") {
+			steps { runUAT(8888) }
+		}
 
-		// stage("Test - UAT Dev") {
-		// 	steps { runUAT(8888) }
-		// }
+		stage("Deploy - Stage") {
+			steps { deploy('stage') }
+		}
 
-		// stage("Deploy - Stage") {
-		// 	steps { deploy('stage') }
-		// }
-
-		// stage("Test - UAT Stage") {
-		// 	steps { runUAT(88) }
-		// }
+		stage("Test - UAT Stage") {
+			steps { runUAT(88) }
+		}
 
 	}
 }

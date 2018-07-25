@@ -15,6 +15,7 @@ pipeline {
 
 		stage("Check Re file") {
 			steps {
+				sh docker ps -a
 				sh "test -e /usr/src/app/requirements.txt && echo file exists || echo file not found"
 			}
 		}

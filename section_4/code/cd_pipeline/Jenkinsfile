@@ -83,9 +83,9 @@ def deploy(environment) {
 		System.exit(0)
 	}
 
-	sh "sudo docker ps -f name=${containerName} -q | xargs docker stop"
-	sh "sudo docker ps -a -f name=${containerName} -q | xargs docker rm"
-	sh "sudo docker run -d -p ${port}:5000 --name ${containerName} hands-on-jenkins/myapp:${BUILD_NUMBER}"
+	sh "docker ps -f name=${containerName} -q | xargs docker stop"
+	sh "docker ps -a -f name=${containerName} -q | xargs docker rm"
+	sh "docker run -d -p ${port}:5000 --name ${containerName} hands-on-jenkins/myapp:${BUILD_NUMBER}"
 
 }
 

@@ -13,9 +13,9 @@ pipeline {
 
 	stages {
 
-		stage("Check Flask") {
+		stage("Check Re file") {
 			steps {
-				sh "which python"
+				sh "find /usr/src/app/ '*.txt'"
 			}
 		}
 

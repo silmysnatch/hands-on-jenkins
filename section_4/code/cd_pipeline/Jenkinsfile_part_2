@@ -1,7 +1,14 @@
 #!/usr/bin/groovy
 
 pipeline {
-	agent any
+	// agent any
+
+	agent {
+		dockerfile {
+			dir 'section_4/code/cd_pipeline'
+			label 'firstdockertorun'
+		}
+	}
 
 	options {
 		disableConcurrentBuilds()

@@ -6,7 +6,6 @@ pipeline {
 	agent {
 		dockerfile {
 			dir 'section_4/code/cd_pipeline'
-			label 'firstdockertorun'
 		}
 	}
 
